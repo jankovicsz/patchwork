@@ -1,0 +1,7 @@
+{
+  "name": "test",
+  "type": "module",
+  "devDependencies": {
+    "@types/tape": "^4.13.0"
+  }
+}
