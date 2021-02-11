@@ -2,6 +2,7 @@ import express from 'express';
 // import fs from 'fs';
 // import path, { dirname } from 'path';
 // import { fileURLToPath } from 'url';
+import cors from 'cors';
 import SinglesRepository from './SinglesRepository.js';
 
 // import { createRequire } from 'module';
@@ -9,9 +10,10 @@ import SinglesRepository from './SinglesRepository.js';
 
 const app = express();
 const port = 3001;
-// const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = dirname(fileURLToPath(import.meta.url));fetch('http://localhost:3001/singles');
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/singles', (req, res) => {
   const singlesRepo = new SinglesRepository();
@@ -31,6 +33,13 @@ app.post('/singles', (req, res) => {
   }
   res.json(createdSingle);
 });
+
+app.put('/singles/:id', (req, res) => {
+  const single = req.body;
+  const singleId = req.params.id;
+  res.json({});
+
+})
 
 app.listen(port, () => {
   console.log(`server listens at port ${port} ...`);
