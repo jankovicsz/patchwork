@@ -1,4 +1,4 @@
-const backendUrl = 'http://localhost:5000';
+const backendUrl = 'http://localhost:8080';
 const endPoint = backendUrl + '/search';
 const queryTableMapping = ['license', 'brand', 'model', 'color', 'year'];
 
