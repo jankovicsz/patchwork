@@ -14,26 +14,36 @@
     <div class="container">
         <div class="mb-3"></div>
         <h2>License plates</h2>
-        <form id="search-form">
+        <form id="search-form" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="license-plate" class="form-label">License plates</label>
-                <input type="text" name="q" class="license-plate" id="license-plate" placeholder="HMZ-140">
+                <input type="text" name="q" class="form-control" id="license-plate" placeholder="HMZ-140"
+                    pattern="[A-Z]{3}-[0-9]{3}">
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="filter" id="police" value="police">
+                <input class="form-check-input" type="radio" name="filter" id="police" value="police" required>
                 <label class="form-check-label" for="police">
                     police
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="filter" id="diplomat" value="diplomat">
+                <input class="form-check-input" type="radio" name="filter" id="diplomat" value="diplomat" required>
                 <label class="form-check-label" for="diplomat">
                     diplomat
                 </label>
             </div>
+
+            <!--     <select class="form-select mb-3" aria-label="Default select example" name="filter" id="filter">
+                <option selected value="">Open this select menu</option>
+                <option value="police">police</option>
+                <option value="diplomat">diplomat</option>
+              </select> -->
             <div class="mb-3"></div>
             <button type="submit" class="btn btn-primary" id="licese-plate-btn">Query database</button>
         </form>
+        <div class="mb-3"></div>
+        <div class="alert alert-danger d-none" role="alert" id="form-error">
+        </div>
         <hr>
         <table class="table" id="license-plates-table">
             <thead>
