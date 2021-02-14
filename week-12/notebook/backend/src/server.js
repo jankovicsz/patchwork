@@ -81,7 +81,13 @@ app.get('/tickets', (req, res) => {
             }
         ]
     })
-})
+});
+
+app.post('/test', (req, res) => {
+    const reqBodyObj = req.body;
+    reqBodyObj.helloWho = 'Valaki'
+    res.json(reqBodyObj);
+});
 
 app.listen(port, () => {
     console.log(`App listens at port ${port} ...`);
