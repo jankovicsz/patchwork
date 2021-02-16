@@ -16,48 +16,54 @@ const translate = {
   'Failed to fetch': 'Szerver oldali hiba történt :(',
 };
 
-if (localStorage.getItem('loggedIn') === 'true') {
-  document
-    .querySelectorAll('.logged-out')
-    .forEach((elem) => elem.classList.add('d-none'));
+class Application {
+
+  static getSingles() {
+    // http://localhost:3000/singles
+    fetch(endpoint.singles)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        const mainElement = document.querySelector('main');
+        const h2Element = document.createElement('h2');
+        h2Element.textContent = 'Egyedülállók listája';
+        const singlesList = document.createElement('ul');
+
+        res.forEach((single) => {
+          if (
+            typeof single.lastName === 'string' &&
+            typeof single.firstName === 'string'
+          ) {
+            const itemElement = document.createElement('li');
+            itemElement.textContent = `${single.lastName} ${single.firstName} (${single.birthDate})`;
+            singlesList.appendChild(itemElement);
+          }
+        });
+
+        mainElement.prepend(singlesList);
+        mainElement.prepend(h2Element);
+      })
+      .catch((reason) => {
+        const alertContainer = document.getElementById('alert-container');
+        let message = reason.message;
+        // reason.message = Failed to fetch
+        // translate.hasOwnProperty(reason.message);
+        if (translate[message] !== undefined) {
+          message = translate[message];
+        }
+        alertContainer.textContent = message;
+        alertContainer.classList.remove('d-none');
+      });
+  }
+
 }
 
-// http://localhost:3000/singles
-fetch(endpoint.singles)
-  .then((res) => {
-    return res.json();
-  })
-  .then((res) => {
-    const mainElement = document.querySelector('main');
-    const h2Element = document.createElement('h2');
-    h2Element.textContent = 'Egyedülállók listája';
-    const singlesList = document.createElement('ul');
-
-    res.forEach((single) => {
-      if (
-        typeof single.lastName === 'string' &&
-        typeof single.firstName === 'string'
-      ) {
-        const itemElement = document.createElement('li');
-        itemElement.textContent = `${single.lastName} ${single.firstName} (${single.birthDate})`;
-        singlesList.appendChild(itemElement);
-      }
-    });
-
-    mainElement.prepend(singlesList);
-    mainElement.prepend(h2Element);
-  })
-  .catch((reason) => {
-    const alertContainer = document.getElementById('alert-container');
-    let message = reason.message;
-    // reason.message = Failed to fetch
-    // translate.hasOwnProperty(reason.message);
-    if (translate[message] !== undefined) {
-      message = translate[message];
-    }
-    alertContainer.textContent = message;
-    alertContainer.classList.remove('d-none');
-  });
+if (localStorage.getItem('loggedIn') === 'true') {
+  document
+    .querySelectorAll('.logged-out .logged-in')
+    .forEach((elem) => elem.classList.toggle('d-none'));
+}
 
 const formElement = document.getElementById('regForm');
 
@@ -106,8 +112,8 @@ loginFormElement.addEventListener('submit', (event) => {
     .then((res) => res.json())
     .then((user) => {
       document
-        .querySelectorAll('.logged-out')
-        .forEach((elem) => elem.classList.add('d-none'));
+        .querySelectorAll('.logged-out .logged-in')
+        .forEach((elem) => elem.classList.toggle('d-none'));
       localStorage.setItem('loggedIn', 'true');
     });
 });

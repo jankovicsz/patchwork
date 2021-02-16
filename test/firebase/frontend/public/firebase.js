@@ -17,9 +17,18 @@ firebase.auth().onAuthStateChanged((user) => {
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
     console.log(user);
+    localStorage.setItem('loggedIn', 'true');
+    document
+      .querySelectorAll('.logged-out .logged-in')
+      .forEach((elem) => elem.classList.toggle('d-none'));
+    Application.getSingles();
     // ...
   } else {
     // User is signed out
+    localStorage.setItem('loggedIn', 'false');
+    document
+      .querySelectorAll('.logged-out .logged-in')
+      .forEach((elem) => elem.classList.toggle('d-none'));
     // ...
   }
 });
@@ -59,3 +68,11 @@ document.querySelectorAll('button.google-login').forEach((button) => {
       });
   });
 });
+
+document.getElementById('logout-link').addEventListener('click', () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+})

@@ -50,5 +50,12 @@
 		"email": "rviktor87@gmail.com",
 		"password": "$2b$10$kvDK6SCkEnTzgRXZRYoFSOkDQ480n5j4lrzfhthAF7cDeo5yKvbx2",
 		"id": 13
+	},
+	{
+		"firstName": "Jankovics",
+		"lastName": "Zoltán",
+		"email": "gipsz@jakab.hu",
+		"password": "$2b$10$ekIKBPGXA4GmJzgJhMjOIuDPkxYzLOGsii6Y2wqvq5BBjEHSFtke2",
+		"id": 14
 	}
 ]
