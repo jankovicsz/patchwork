@@ -13,7 +13,7 @@
     <main>
         <div class="mb-5"></div>
         <div class="container">
-            <div class="reg-container d-none">
+            <div id="reg-container" class="d-none">
                 <div class="mb-3">
                     <h2>Regisztráció</h2>
                 </div>
@@ -31,10 +31,13 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
-                    <button type="submit" id="reg-button" class="btn btn-primary">Regisztráció</button>
+                    <div class="mb-3">
+                        <button type="submit" id="reg-button" class="btn btn-primary">Regisztráció</button>
+                    </div>
+                    <p class="registrated-user">Már regisztráltam. <a href="#">Tovább a bejelentkezéshez</a></p>
                 </form>
             </div>
-            <div class="login-container">
+            <div id="login-container">
                 <div class="mb-3">
                     <h2>Bejelentkezés</h2>
                 </div>
@@ -52,7 +55,11 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck2">
                         <label class="form-check-label" for="exampleCheck2">Check me out</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Bejelentlezés</button>
+                    <div class="mb-3">
+                        <button type="submit" id="login-button" class="btn btn-primary">Bejelentlezés</button>
+                        <button type="submit" id="logout-button" class="btn btn-success">Kijelentlezés</button>
+                    </div>
+                    <p class="new-user">Új felhasználó vagyok. <a href="#">Tovább a regisztrációra</a> </p>
                 </form>
             </div>
 
