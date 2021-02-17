@@ -11,9 +11,9 @@
 
 <body>
     <main>
-        <div class="mb-5"></div>
         <div class="container">
             <div id="reg-container" class="d-none">
+                <div class="mb-3"></div>
                 <div class="mb-3">
                     <h2>Regisztráció</h2>
                 </div>
@@ -38,6 +38,7 @@
                 </form>
             </div>
             <div id="login-container">
+                <div class="mb-3"></div>
                 <div class="mb-3">
                     <h2>Bejelentkezés</h2>
                 </div>
@@ -57,12 +58,52 @@
                     </div>
                     <div class="mb-3">
                         <button type="submit" id="login-button" class="btn btn-primary">Bejelentlezés</button>
-                        <button type="submit" id="logout-button" class="btn btn-success">Kijelentlezés</button>
                     </div>
                     <p class="new-user">Új felhasználó vagyok. <a href="#">Tovább a regisztrációra</a> </p>
                 </form>
             </div>
-
+            <div id="loggedin-container" class="d-none">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Navbar</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                      </li>
+                    </ul>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+              <div class="mb-5"></div>
+                    <h2 id="greeting">Üdvözöllek <span></span>!</h2>
+                    <div class="mb-5"></div>
+                <button type="button" id="logout-button" class="btn btn-success">Kijelentlezés</button>
+            </div>
         </div>
     </main>
 
