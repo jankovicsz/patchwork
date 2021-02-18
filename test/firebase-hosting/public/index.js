@@ -14,9 +14,24 @@ const db = firebase.firestore();
 
 console.log('Ok');
 
-db.collection("test_id").doc('questions').get().then((doc) => {
-    /* querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-    }); */
-    console.log(doc.data());
-});
+db.collection("test_id")
+    .get()
+    .then(data => {
+        data.forEach((doc) => {
+            console.log(doc.id, doc.data());
+        })
+    });
+
+function add() {
+    db.collection("test_id").add({
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+    })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+}
