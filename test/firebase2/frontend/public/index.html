@@ -18,18 +18,26 @@
                     <h2>Regisztráció</h2>
                 </div>
                 <form id="reg-form">
+                  <div class="mb-3">
+                    <label for="reg-name" class="form-label">Név</label>
+                    <input type="text" class="form-control" id="reg-name" name="reg-name" placeholder="Gipsz Jakab">
+                </div>
                     <div class="mb-3">
                         <label for="reg-email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="reg-email" name="reg-email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="reg-email" name="reg-email" aria-describedby="emailHelp" placeholder="valaki@valami.com">
                         <div id="reg-email-help" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="mb-3">
-                        <label for="reg-password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="reg-password" name="reg-password">
+                        <label for="reg-password" class="form-label">Jelszó</label>
+                        <input type="password" class="form-control" id="reg-password" name="reg-password" placeholder="Jelszó">
                     </div>
+                    <div class="mb-3">
+                      <label for="reg-password-again" class="form-label">Jelszó újra</label>
+                      <input type="password" class="form-control" id="reg-password-again" name="reg-password-again" placeholder="Jelszó újra">
+                  </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        <label class="form-check-label" for="exampleCheck1">Elfogadom az <a href="#">Adatvédelmi nyilatkozatot</a></label>
                     </div>
                     <div class="mb-3">
                         <button type="submit" id="reg-button" class="btn btn-primary">Regisztráció</button>
@@ -54,7 +62,7 @@
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                        <label class="form-check-label" for="exampleCheck2">Check me out</label>
+                        <label class="form-check-label" for="exampleCheck1">Elfogadom az <a href="#">Adatvédelmi nyilatkozatot</a></label>
                     </div>
                     <div class="mb-3">
                         <button type="submit" id="login-button" class="btn btn-primary">Bejelentlezés</button>
@@ -101,8 +109,9 @@
               </nav>
               <div class="mb-5"></div>
                     <h2 id="greeting">Üdvözöllek <span></span>!</h2>
+                    <p id="greet-email"><span></span> email címmel vagy bejelentkezve</p>
                     <div class="mb-5"></div>
-                <button type="button" id="logout-button" class="btn btn-success">Kijelentlezés</button>
+                <button type="button" id="logout-button" class="btn btn-primary">Kijelentlezés</button>
             </div>
         </div>
     </main>

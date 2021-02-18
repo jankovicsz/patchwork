@@ -23,6 +23,9 @@ regForm.addEventListener('submit', (e) => {
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
+    user.updateProfile({
+      displayName: document.getElementById('reg-name').value
+    });
     regForm.reset();
     toggleLoginAndReg();
     // ...
@@ -46,6 +49,9 @@ loginForm.addEventListener('submit', (e) => {
   .then((userCredential) => {
     // Signed in
     const user = userCredential.user;
+    user.updateProfile({
+      displayName: document.getElementById('reg-name').value
+    });
     loginForm.reset();
     toggleLoggedIn();
     // ...
@@ -62,8 +68,9 @@ firebase.auth().onAuthStateChanged((user) => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     // const uid = user.uid;
-    console.log(user);
-    const email = document.querySelector('#greeting span');
+    const name = document.querySelector('#greeting span');
+    name.textContent = user.displayName;
+    const email = document.querySelector('#greet-email span');
     email.textContent = user.email;
     // ...
   } else {
