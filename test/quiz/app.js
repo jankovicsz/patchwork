@@ -39,6 +39,10 @@ app.get('/game', (req, res, next) => {
 app.get('/questions', (req, res, next) => {
     res.sendFile('questions.html', { root: getAbsolutePath('public') });
 });
+
+function getAbsolutePath(staticDirName) {
+    return path.join(__dirname, staticDirName);
+}
 // ---
 
 
@@ -67,14 +71,39 @@ app.post('/api/questions', async (req, res, next) => {
     if (typeof inputData.question !== 'string' || inputData.question.length < 3) {
         throw new Error('Invalid question');
     }
-    if (!Array.isArray(inputData.answers) || inputData.answers.length !== 4) {}
+    if (!Array.isArray(inputData.answers) || inputData.answers.length !== 4) {
+        throw new Error('Invalid answers');
+    }
+    for (let i = 0; i < inputData.answers.length; i++) {
+        const answerObject = inputData.answers[i];
+
+        if (typeof answerObject.answer !== 'string' || answerObject.answer.length < 3) {
+            throw new Error(`invalid answer[${i}]`);
+        }
+        if (typeof answerObject.is_correct !== 'boolean') {
+            throw new Error(`invalid is_correct[${i}]`);
+        }
+    }
+    if (inputData.answers.filter(answerObject => answerObject.is_correct).length !== 1) {
+        throw new Error(`there are more than 1 correct answers`);
+    }
+
     const doc = await db.collection('questions')
         .add(inputData);
     res.json({
         id: doc.id
     })
 });
-app.post('/api/questions/:id', (req, res, next) => { });
+
+app.delete('/api/questions/:id', async (req, res, next) => {
+    const id = req.params.id;
+
+    await db.collection('questions')
+        .doc(id)
+        .delete();
+
+    res.json({});
+});
 // ---
 
 
@@ -82,6 +111,3 @@ app.listen(port, () => {
     console.log(`Server run at port ${port}...`);
 });
 
-function getAbsolutePath(staticDirName) {
-    return path.join(__dirname, staticDirName);
-}
