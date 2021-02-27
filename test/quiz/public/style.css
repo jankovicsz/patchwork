@@ -1,0 +1,191 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Podkova', serif;
+}
+
+body {
+    background-color: #ecf0f1;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.game-container {
+    margin-top: 170px;
+}
+
+/* game.html */
+
+.score {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.game-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 640px;
+    min-height: 510px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 60px 0;
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    padding: 0 60px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.btn-game {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 480px;
+    height: 60px;
+    background-color: #3298db;
+    color: white;
+    margin-bottom: 15px;
+
+}
+
+.btn-game:hover {
+    cursor: pointer;
+    box-shadow: 0px 5px 3px -3px rgba(0, 0, 0, .5);
+    background-color: #3297dbda;
+}
+
+.btn-win {
+    background-color: #26ae60;
+}
+
+.btn-win:hover {
+    background-color: #26ae60;
+}
+
+.btn-lose {
+    background-color: red;
+}
+
+.btn-lose:hover {
+    background-color: red;
+}
+
+.edit-questions a {
+    color: #3298db;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.edit-questions a:hover {
+    text-decoration: underline;
+}
+
+/* questions.html */
+
+.question-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 60px;
+    margin-bottom: 20px;
+}
+
+.head-title {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.new-question-div {
+    width: 100%;
+}
+
+.input-label {
+    display: block;
+}
+
+.input-label label {
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.answer-input {
+    width: 90%;
+    height: 36px;
+    font-size: 20px;
+    margin: 20px 0;
+    padding-left: 10px;
+}
+
+.answer-radio {
+    margin-left: 10px;
+}
+
+.questions-title {
+    font-size: 24px;
+}
+
+.new-question {
+    width: 100%;
+    height: 36px;
+    font-size: 20px;
+    margin: 15px 0;
+    padding-left: 10px;
+}
+
+.button-div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-submit {
+    background-color: #3298db;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.all-questions div {
+    font-size: 18px;
+    display: inline-block;
+    width: 80%;
+    margin: 15px 0;
+}
+
+.all-questions button {
+    float: right;
+    margin: 15px 0;
+    font-size: 18px;
+    color: rgba(255, 0, 0, 0.7);
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.all-questions button:hover {
+    text-decoration: underline;
+}
+
+.all-questions button:focus {
+    outline: none;
+    color: red;
+}

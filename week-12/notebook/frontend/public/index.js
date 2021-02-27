@@ -2,6 +2,7 @@ const backendUrl = 'http://localhost:8080';
 const endPoint = {
     users: backendUrl + '/users',
     tickets: backendUrl + '/tickets',
+    test: backendUrl + '/test'
 }
 
 document.getElementById('ticket-form').onload = fetch(endPoint.users)
@@ -26,17 +27,27 @@ document.getElementById('ticket-form').onload = fetch(endPoint.users)
     selectedReporter = selectedElement.options[i].text;
     console.log(selectedReporter);
 } */
-
+const reportObj = {};
 document.getElementById('ticket-form').addEventListener('submit', (event) => {
     event.preventDefault();
-    const manufacturer = document.getElementById('manufacturer');
-    const serialNumber = document.getElementById('serial-number');
-    const description = document.getElementById('description');
     const selectedElement = document.querySelector('#user-select');
     const i = selectedElement.selectedIndex
-    const selectedReporter = selectedElement.options[i].text;
-    console.log(selectedReporter);
-    console.log(manufacturer.value);
-    console.log(serialNumber.value);
-    console.log(description.value);
-})
+    reportObj.reporter = selectedElement.options[i].text;
+    reportObj.manufacturer = document.getElementById('manufacturer').value;
+    reportObj.serial_number = document.getElementById('serial-number').value;
+    reportObj.description = document.getElementById('description').value;
+    fetch(endPoint.test, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reportObj),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+});

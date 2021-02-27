@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+        <div class="head-title">Kérdések szerkesztése</div>
+        <div class="question-box">
+            <div class="all-questions"></div>
+        </div>
+        <div class="head-title">Új kérdés létrehozása</div>
+        <div class="question-box">
+            <div class="new-question-div">
+                <form id="new-question-form" action="POST">
+                    <input type="text" class="new-question" name="new-question" id="new-question" placeholder="Ide írd a kérdést">
+                    <div class="questions-title">Válaszok</div>
+                    <div class="input-label">
+                        <label for="answer1">#1</label>
+                        <input type="text" class="answer-input" name="answer1" id="answer1" placeholder="Ide írd a választ">
+                        <input type="radio" class="answer-radio" name="answerRadio" id="answerRadio1">
+                    </div>
+                    <hr>
+                    <div class="input-label">
+                        <label for="answer2">#2</label>
+                        <input type="text" class="answer-input" name="answer2" id="answer2" placeholder="Ide írd a választ">
+                        <input type="radio" class="answer-radio" name="answerRadio" id="answerRadio2">
+                    </div>
+                    <hr>
+                    <div class="input-label">
+                        <label for="answer3">#3</label>
+                        <input type="text" class="answer-input" name="answer3" id="answer3" placeholder="Ide írd a választ">
+                        <input type="radio" class="answer-radio" name="answerRadio" id="answerRadio3">
+                    </div>
+                    <hr>
+                    <div class="input-label">
+                        <label for="answer4">#4</label>
+                        <input type="text" class="answer-input" name="answer4" id="answer4" placeholder="Ide írd a választ">
+                        <input type="radio" class="answer-radio" name="answerRadio" id="answerRadio4">
+                    </div>
+                    
+                    <div class="button-div">
+                        <button type="submit" class="btn-submit">Küldés</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="example"></div>
+        <div class="edit-questions"><a href="./game.html">Vissza a játékhoz</a></div>
+    </main>
+
+    <script src="./questions.js"></script>
+</body>
+
+</html>
