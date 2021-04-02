@@ -1,0 +1,16 @@
+const content = [
+  {
+    firstName: 'Nagy',
+    password: '12345678',
+    username: 'charlemagne',
+    lastName: 'Károly',
+  },
+  {
+    firstName: 'Kiss',
+    password: 'arad48',
+    lastName: 'János',
+    username: 'altabornagy',
+  },
+];
+
+console.log(content[0]);
