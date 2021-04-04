@@ -1,7 +1,7 @@
-import firebase from 'firebase';
-import firebaseConfig from './config';
+// import firebase from 'firebase';
+import firebase from './config';
 import 'firebase/firestore';
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 export default firebase.firestore;

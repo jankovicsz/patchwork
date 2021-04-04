@@ -14,7 +14,7 @@ export default function EmailReg() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });
+  }, );
 
   const [formErrors, setFormErrors] = useState({
     email: "",

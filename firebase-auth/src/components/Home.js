@@ -119,7 +119,7 @@ export default function Home() {
       .signInWithEmailAndPassword(formData.email, formData.password)
       .then((result) => {
         console.log(result);
-        setUser(result.user);
+        setUser(auth().currentUser);
       })
       .catch((error) => {
         console.log(error);
@@ -146,6 +146,17 @@ export default function Home() {
     const name = e.target.name;
     validateField(name);
     //setFormWasValidated(validateField(name));
+  }
+
+  function handleSignOut(e) {
+    e.preventDefault();
+    auth().signOut().then((result) => {
+      console.log(result);
+      setUser(null);
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
   }
 
   return (
@@ -192,6 +203,9 @@ export default function Home() {
       <Link to="/google">
           Bejelentkezés Google fiókkal
       </Link>
+      <button type="button" onClick={handleSignOut} className="btn btn-primary btn-logout">
+          Kijelentkezés
+        </button>
       <div className="mt-2"></div>
       {user && <div className='mt-3'>Bejelentkezve: {user.email}</div>}
     </main>
