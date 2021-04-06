@@ -1,0 +1,88 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  max-width: 800px;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+main form {
+  display: flex;
+  align-self: stretch;
+}
+
+main h1 {
+  display: flex;
+  justify-content: center;
+}
+
+table tr {
+  display: flex;
+  justify-content: stretch;
+}
+
+table tr:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+  cursor: pointer;
+}
+
+table tr th,
+td {
+  display: flex;
+  flex-grow: 1;
+}
+
+table tr th:nth-of-type(2) {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 60px;
+}
+
+table tr td:nth-of-type(2) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table tr td:nth-of-type(2) span {
+  align-self: center;
+  margin-right: 30px;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+table button {
+  margin-left: 5px;
+}
+
+.new-todo {
+  display: flex;
+  flex-direction: column;
+}
