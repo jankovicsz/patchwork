@@ -1,0 +1,112 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #ecf0f1;
+  font-size: 18px;
+}
+
+main,
+main div {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.under-line {
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.quizbox {
+  display: flex;
+  width: 640px;
+  min-height: 540px;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  padding: 80px;
+  border-radius: 15px;
+}
+
+.quizbox button {
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color: #3c8cdb;
+}
+
+.quizbox button.good-answer {
+  background-color: #27ae60;
+}
+
+.quizbox button.bad-answer {
+  background-color: red;
+}
+
+.question {
+  margin-bottom: 50px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-container button {
+  margin: 0 10px;
+}
+
+.container {
+  width: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // border: orangered solid 1px;
+}
+
+.input-fields {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 10;
+  //  border: green solid 1px;
+}
+
+.input-fields div {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  // border: yellow solid 1px;
+}
+
+.radios {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  //  border: blue solid 1px;
+  align-self: flex-end;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: row;
+}
+

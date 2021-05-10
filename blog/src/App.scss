@@ -1,0 +1,49 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  background-color: #bbb;
+}
+
+header h1 {
+  width: 800px;
+  margin: 0 auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 15px auto;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 0 10px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+}
+
+section.new-post {
+  margin: 10px;
+  padding: 20px;
+}
+
+.posts-header {
+  margin: 10px;
+}
+
+.delete-post {
+  text-decoration: underline;
+  cursor: pointer;
+}
