@@ -11,12 +11,11 @@ export default function Game() {
         squares: Array(num ** 2).fill(null),
       },
     ],
-    //stepNumber: 0,
+    stepNumber: 0,
     xIsNext: true,
   });
 
   const history = fields.history;
-
   const current = history[history.length - 1];
 
   function calculateWinner(squares) {
@@ -52,24 +51,30 @@ export default function Game() {
     status = "Következő játékos " + (fields.xIsNext ? "X" : "O");
   }
 
-  const moves = history.map((step, move) => {
-    const desc = move ? 
-    `Menj ide: ${move}. lépés` :
-    "Menj a játék kezdetéhez";
-    return (
-      <li key={move}>
-        <button onClick={handleButtonMove}>{desc}</button>
-      </li>
-    )
-  })
-
-  function handleButtonMove(e) {
-
+  function handleButtonMove(step) {
+    setFields({
+      ...fields,
+      stepNumber: step,
+      xIsNext: step % 2 === 0,
+    });
   }
 
+  const moves = history.map((step, move) => {
+    const desc = move ? `Menj ide: ${move}. lépés` : "Menj a játék kezdetéhez";
+    return (
+      <li key={move}>
+        <button onClick={() => handleButtonMove(step)}>{desc}</button>
+      </li>
+    );
+  });
+
   function handleOnClickButton(e) {
+    const newHistory = fields.history.slice(0, fields.stepNumber + 1);
+    const newCurrent = newHistory[newHistory.length - 1];
+    console.log("new history: ", newHistory);
+    console.log("new current: ", newCurrent);
     const index = Number(e.target.dataset.index);
-    const newSquares = [...current.squares];
+    const newSquares = newCurrent.squares.slice();
     if (calculateWinner(newSquares) || newSquares[index]) {
       return;
     }
@@ -81,11 +86,12 @@ export default function Game() {
           squares: newSquares,
         },
       ], */
-      history: history.concat([
+      history: newHistory.concat([
         {
           squares: newSquares,
         },
       ]),
+      stepNumber: newHistory.length,
       xIsNext: !fields.xIsNext,
     });
   }
@@ -101,9 +107,10 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
-      <div className="status">{status}</div>
+        <div className="status">{status}</div>
         <ol>{moves}</ol>
       </div>
+      {console.log("current: ", current)}
     </div>
   );
 }
