@@ -22,7 +22,7 @@ export default function NewTrip() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(inputFields);
+
     db.collection("vtravel")
       .add({
         name: inputFields.name,
@@ -32,30 +32,30 @@ export default function NewTrip() {
         },
         accommodation: inputFields.accommodation,
         price: parseInt(inputFields.price),
-        rooms: {
-          singleRoom: {
+        rooms: [
+          {
             text: "Egyágyas szoba",
             price: parseInt(inputFields.singleRoomPrice),
           },
-          doubleRoom: {
+          {
             text: "Kétágyas szoba",
             price: 0,
           },
-          tripleRoom: {
+          {
             text: "Háromágyas szoba",
             price: 0,
           },
-        },
-        boards: {
-          breakfast: {
+        ],
+        boards: [
+          {
             text: "reggeli",
             price: 0,
           },
-          halfBoard: {
+          {
             text: "félpanzió",
             price: parseInt(inputFields.halfBoardPrice),
           },
-        },
+        ],
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);

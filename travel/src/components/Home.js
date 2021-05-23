@@ -5,8 +5,10 @@ import db from "../firebase/db";
 export default function Home() {
   const [trip, setTrip] = useState([]);
   const [selectedTrip, setSelectedTrip] = useState({});
-  const [boards, setBoards] = useState("");
-
+  const [services, setServices] = useState({
+    rooms: {},
+    boards: {},
+  });
 
   useEffect(() => {
     // const unsubscribe = db.collection("vtravel");
@@ -28,15 +30,32 @@ export default function Home() {
   function handleSelectTrip(e) {
     const { name, value } = e.target;
     const selected = trip.filter((item) => item.name === value)[0];
-    setSelectedTrip(selected);
-    setSelectedTrip((previousSelectedTrip) => ({
-      ...previousSelectedTrip,
+    setServices({
+      rooms: {},
+      boards: {},
+    });
+    setSelectedTrip({
+      ...selected,
       [name]: value,
-    }));
+      departure: selected === undefined ? '' : new Date(selected.dates.departure.seconds * 1000),
+      arrival: selected === undefined ? '' : new Date(selected.dates.arrival.seconds * 1000),
+      days: e.target.value === '' ? '' : new Date(
+        (selected.dates.arrival.seconds - selected.dates.departure.seconds) *
+          1000
+      ).getDate(), 
+    });
   }
 
-  function handleSelectBoards(e) {
-    setBoards(e.target.options[e.target.selectedIndex].value);
+  function handleSelectServices(e) {
+    const { name } = e.target;
+    const value = e.target.options[e.target.selectedIndex].value;
+    const selectedItem = selectedTrip[name].filter(
+      (item) => item.text === value
+    )[0];
+    setServices({
+      ...services,
+      [name]: selectedItem,
+    });
   }
 
   return (
@@ -55,35 +74,87 @@ export default function Home() {
           reference={references.category}
           errors={errors} */
       />
-        <InputItem
-          label="Ellátás"
-          type="select"
-          name="boards"
-          onChange={handleSelectBoards}
-          options={selectedTrip.boards ? Object.keys(selectedTrip.boards).map((item) => {
-            return selectedTrip.boards[item].text;
-          }): []}
-          /*required={true}
+      <InputItem
+        label="Elhelyezés"
+        type="select"
+        name="rooms"
+        onChange={handleSelectServices}
+        options={
+          selectedTrip.rooms ? selectedTrip.rooms.map((item) => item.text) : []
+        }
+        /*required={true}
           onBlur={handleBlur}
           reference={references.category}
           errors={errors} */
-        />
-      <div>{selectedTrip.name}</div>
-      {selectedTrip.dates && (
+      />
+      <InputItem
+        label="Ellátás"
+        type="select"
+        name="boards"
+        onChange={handleSelectServices}
+        options={
+          selectedTrip.boards
+            ? selectedTrip.boards.map((item) => item.text)
+            : []
+        }
+        /*required={true}
+          onBlur={handleBlur}
+          reference={references.category}
+          errors={errors} */
+      />
+      {selectedTrip.name && <div>Út neve: {selectedTrip.name}</div>}
+       {selectedTrip.dates && (
         <div>
-          {new Date(
-            selectedTrip.dates.departure.seconds * 1000
-          ).toLocaleDateString("Hu-hu")}{" "}
-          -{" "}
-          {new Date(
-            selectedTrip.dates.arrival.seconds * 1000
-          ).toLocaleDateString("Hu-hu")}
+          Időpont: {selectedTrip.departure.getFullYear()}.
+          {selectedTrip.departure.getMonth() > 8
+            ? selectedTrip.departure.getMonth() + 1
+            : `0${selectedTrip.departure.getMonth() + 1}`}
+          .
+          {selectedTrip.departure.getDate() > 9
+            ? selectedTrip.departure.getDate()
+            : `0${selectedTrip.departure.getDate()}`}
+          {" - "}
+          {selectedTrip.arrival.getMonth() > 8
+            ? selectedTrip.arrival.getMonth() + 1
+            : `0${selectedTrip.arrival.getMonth() + 1}`}
+          .
+          {selectedTrip.arrival.getDate() > 9
+            ? selectedTrip.arrival.getDate()
+            : `0${selectedTrip.arrival.getDate()}`}
+          .
         </div>
       )}
-      <div>{selectedTrip.accommodation}</div>
-      <div>{selectedTrip.price}</div>
-      {boards && <div>{boards}</div>}
-      {console.log(boards)}
+      {selectedTrip.days && (
+        <div>
+          {selectedTrip.days} nap/ {selectedTrip.days - 1} éj
+        </div>
+      )} 
+      {selectedTrip.accommodation && (
+        <div>Szállás: {selectedTrip.accommodation}</div>
+      )}
+      {services.rooms && services.rooms.text && (
+        <div>
+          Elhelyezés: {services.rooms.text}{" "}
+          {services.rooms.price > 0 && <span> {services.rooms.price} Ft</span>}
+        </div>
+      )}
+      {services.boards && services.boards.text && (
+        <div>
+          Ellátás: {services.boards.text}{" "}
+          {services.boards.price > 0 && (
+            <span> {services.boards.price} Ft</span>
+          )}
+        </div>
+      )}
+      {services.boards && services.boards.text && (
+        <div>Részvételi díj: {selectedTrip.price}</div>
+      )}
+      {services.boards && services.rooms && services.boards.text && (
+        <div>
+          Díjak összesen:{" "}
+          {selectedTrip.price + services.boards.price + services.rooms.price}
+        </div>
+      )}
     </>
   );
 }
